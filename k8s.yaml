@@ -1,3 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: boris
+  labels:
+    istio-injection: enabled
+---
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: mi-deployment
   namespace: boris
@@ -16,12 +25,14 @@ spec:
     spec:
       containers:
         - name: contenedor-principal
-          image: forcet22/hola-node:2.0.0  # <-- Reemplaza con la imagen que quieras usar
+          image: adonispaz9506/hola-mundo-clase123:4  # <-- Reemplaza con la imagen que quieras usar
           ports:
             - containerPort: 3000
           envFrom:
             - configMapRef:
-              name: mi-configmap
+                name: mi-configmap
+            - secretRef:
+                name: mi-secret
 ---
 apiVersion: v1
 kind: Service
@@ -53,10 +64,5 @@ metadata:
 type: Opaque
 data:
   PASSWORD: aG9sYQ==
+
 ---
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: boris
-  labels:
-    istio-injection: enabled
