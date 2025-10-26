@@ -26,7 +26,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKER_USERNAME  }}/hola-mundo-clase123
+          images: ${{ secrets.DOCKER_USERNAME  }}/pruebas-seguridad
           tags: |
             type=raw,value=build-${{ github.run_number }}
 
