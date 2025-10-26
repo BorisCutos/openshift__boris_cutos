@@ -39,8 +39,8 @@ spec:
               mounthPath: "/app/data"
       volumes:
         - name: datos
-        persistentVolumeClaim:
-          claimName:  mi-pvc
+          persistentVolumeClaim:
+            claimName:  mi-pvc
 
 
 ---
