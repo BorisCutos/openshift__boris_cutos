@@ -34,6 +34,12 @@ spec:
                 name: mi-configmap
             - secretRef:
                 name: mi-secret
+      volumes:
+        - name: datos
+        persistentVolumeClaim:
+          claimName:  mi-pvc
+          
+
 ---
 apiVersion: v1
 kind: Service
