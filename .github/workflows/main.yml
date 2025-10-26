@@ -64,6 +64,6 @@ jobs:
 
       - name: Deploy files
         run: |
-          oc project adonis-paz-dev
+          oc project k-att-y70-dev
           oc apply -f oc.yaml
           oc rollout status deployment/mi-deployment
