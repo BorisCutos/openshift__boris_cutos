@@ -36,13 +36,11 @@ spec:
                 name: mi-secret
           volumeMounts:
             - name: datos
-              mounthPath: "/app/data"
+              mountPath: "/app/data"
       volumes:
         - name: datos
           persistentVolumeClaim:
             claimName:  mi-pvc
-
-
 ---
 apiVersion: v1
 kind: Service
