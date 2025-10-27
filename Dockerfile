@@ -1,5 +1,5 @@
 # Imagen base
-FROM adonispaz9506/holamundobase:1
+FROM boriscutos/pruebas-seguridad:1
 
 
 # Establece el directorio de trabajo
