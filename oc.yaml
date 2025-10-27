@@ -102,7 +102,7 @@ metadata:
   namespace: k-att-y70-dev
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
