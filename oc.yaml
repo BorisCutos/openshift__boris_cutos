@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mi-deployment
+  name: mi-deployment-13
   namespace: k-att-y70-dev
   labels:
-    app: mi-app
+    app: mi-app-13
     areanegocio: tecnologia
 spec:
   replicas: 1
@@ -32,9 +32,9 @@ spec:
               memory: "1500Mi"
           envFrom:
             - configMapRef:
-                name: mi-configmap
+                name: mi-configmap-13
             - secretRef:
-                name: mi-secret
+                name: mi-secret-13
           #volumeMounts:
             #- name: datos
               #mountPath: "/app/data"
@@ -46,11 +46,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mi-servicio
+  name: mi-servicio-13
   namespace: k-att-y70-dev  # Asegúrate de que coincida con tu Deployment
 spec:
   selector:
-    app: mi-app  # Debe coincidir con las labels del Deployment
+    app: mi-app-13  # Debe coincidir con las labels del Deployment
   ports:
     - protocol: TCP
       port: 4000        # Puerto del Service
@@ -60,7 +60,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mi-configmap
+  name: mi-configmap-13
   namespace: k-att-y70-dev
 data:
   DATABASE: "192.168.1.1"
@@ -68,7 +68,7 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: mi-secret
+  name: mi-secret-13
   namespace: k-att-y70-dev
 type: Opaque
 data:
@@ -78,13 +78,13 @@ data:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: mi-hpa
+  name: mi-hpa-13
   namespace: k-att-y70-dev
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: deployment
-    name: mi-deployment
+    name: mi-deployment-13
   minReplicas: 1
   maxReplicas: 5
   metrics:
@@ -99,7 +99,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mi-pvc-v2
+  name: mi-pvc-v13
   namespace: k-att-y70-dev
 spec:
   accessModes:
