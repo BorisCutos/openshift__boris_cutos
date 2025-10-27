@@ -18,7 +18,8 @@ spec:
     spec:
       containers:
         - name: contenedor-principal
-          image: image-registry.openshift-image-registry.svc:5000/k-att-y70-dev/ejercicioclase-git-app-phyton:build-{{ tag }}
+          #image: image-registry.openshift-image-registry.svc:5000/k-att-y70-dev/ejercicioclase-git-app-phyton:build-{{ tag }}
+          image: boriscutos/pruebas-seguridad:build-{{ tag }}
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
