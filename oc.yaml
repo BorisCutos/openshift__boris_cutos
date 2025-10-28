@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mi-deployment-13
+  name: mi-deployment-principal
   namespace: k-att-y70-dev
   labels:
-    app: mi-app-13
+    app: mi-app-principal
     areanegocio: tecnologia
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mi-app
+      app: mi-app-principal
   template:
     metadata:
       labels:
-        app: mi-app
+        app: mi-app-principal
     spec:
       containers:
         - name: contenedor-principal
@@ -32,9 +32,9 @@ spec:
               memory: "1500Mi"
           envFrom:
             - configMapRef:
-                name: mi-configmap-13
+                name: mi-configmap-principal
             - secretRef:
-                name: mi-secret-13
+                name: mi-secret-principal
           #volumeMounts:
             #- name: datos
               #mountPath: "/app/data"
@@ -46,11 +46,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mi-servicio-13
+  name: mi-servicio-principal
   namespace: k-att-y70-dev  # Asegúrate de que coincida con tu Deployment
 spec:
   selector:
-    app: mi-app-13  # Debe coincidir con las labels del Deployment
+    app: mi-app-principal  # Debe coincidir con las labels del Deployment
   ports:
     - protocol: TCP
       port: 4000        # Puerto del Service
@@ -60,7 +60,7 @@ spec:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mi-configmap-13
+  name: mi-configmap-principal
   namespace: k-att-y70-dev
 data:
   DATABASE: "192.168.1.1"
@@ -68,7 +68,7 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: mi-secret-13
+  name: mi-secret-principal
   namespace: k-att-y70-dev
 type: Opaque
 data:
@@ -78,13 +78,13 @@ data:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: mi-hpa-13
+  name: mi-hpa-principal
   namespace: k-att-y70-dev
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: deployment
-    name: mi-deployment-13
+    name: mi-deployment-principal
   minReplicas: 1
   maxReplicas: 5
   metrics:
@@ -99,7 +99,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mi-pvc-v13
+  name: mi-pvc-principal
   namespace: k-att-y70-dev
 spec:
   accessModes:
