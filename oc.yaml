@@ -35,6 +35,26 @@ spec:
                 name: mi-configmap-principal
             - secretRef:
                 name: mi-secret-principal
+          startupProbe:
+            httpGet:
+              path: /startup
+              port: 3000
+            failureThreshold: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 3000
+            failureThreshold: 5
+            initialDelaySeconds: 0
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3000
+            failureThreshold: 5
+            initialDelaySeconds: 0
+            periodSeconds: 10  
           #volumeMounts:
             #- name: datos
               #mountPath: "/app/data"
